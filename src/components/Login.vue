@@ -19,9 +19,9 @@ export default {
         }).then((res)=>{
             console.log(res);
         })*/
-        this.$request.get('/login', {name: 'dmoon'}, {mock:true, loading:true}).then((res)=>{
-            console.log(res);
-        })
+        // this.$request.get('/login', {name: 'dmoon'}, {mock:true, loading:true}).then((res)=>{
+        //     console.log(res);
+        // })
     },
     methods: {
         goHome() {

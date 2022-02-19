@@ -1,15 +1,21 @@
-<script  >
 
-  export default {
-    name: 'app',
-    
-  }
- 
-</script>
 
 <template>
   <router-view></router-view>
 </template>
+
+<script  >
+
+  export default {
+    name:'app',
+    mounted(){
+      this.$storage.setItem('name',"dmoon");
+      this.$storage.clearAll();
+    }
+  }
+ 
+</script>
+
 
 <style>
  
