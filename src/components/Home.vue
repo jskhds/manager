@@ -34,7 +34,6 @@ export default{
     transition: width .5s;
   }
   .content-right{
-    //   因为 nav-side 已经脱离文档流了，所以这里要用 margin-left 固定一下位置（常见处理方法）
     margin-left:200px;
     .nav-top{
       height: 50px;

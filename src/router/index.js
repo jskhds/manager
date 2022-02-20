@@ -1,15 +1,14 @@
-import { createRouter, createWebHashHistory } from "vue-router"
-import Home from "../../src/components/Home.vue"
+import { createRouter, createWebHashHistory } from 'vue-router'
+import Home from './../components/Home.vue'
+
 const routes = [
-    // 1.根组件
     {
         name:'home',
         path:'/',
-        component:Home,
-        // 定义源数据
         meta:{
             title:'首页'
         },
+        component:Home,
         redirect:'/welcome',
         children:[
             {
@@ -18,12 +17,10 @@ const routes = [
                 meta:{
                     title:'欢迎页'
                 },
-                component:()=>import('./../views/Welcome.vue'),
-            },
-            
+                component:()=>import('./../views/Welcome.vue')
+            }
         ]
     },
-    // 2.入口的登录页（另外写）
     {
         name:'login',
         path:'/login',

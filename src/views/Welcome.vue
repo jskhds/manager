@@ -11,5 +11,8 @@ export default {
 }
 </script>
 
-<style scoped> 
+<style scoped>
+.welcome{
+  
+}
 </style>
