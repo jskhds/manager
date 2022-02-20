@@ -1,8 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 import Home from "../../src/components/Home.vue"
-import Welcome from "../../src/components/Welcome.vue"
-import Login from "../../src/components/Login.vue"
 const routes = [
+    // 1.根组件
     {
         name:'home',
         path:'/',
@@ -19,17 +18,19 @@ const routes = [
                 meta:{
                     title:'欢迎页'
                 },
-                component:Welcome,
+                component:()=>import('./../views/Welcome.vue'),
             },
-            {
-                name:'login',
-                path:'/login',
-                meta:{
-                    title:'登录页'
-                },
-                component:Login,
-            }
+            
         ]
+    },
+    // 2.入口的登录页（另外写）
+    {
+        name:'login',
+        path:'/login',
+        meta:{
+            title:'登录'
+        },
+        component:()=>import('./../views/Login.vue')
     }
 ]
 const router = createRouter({
