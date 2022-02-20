@@ -45,7 +45,8 @@ export default {
       this.$refs.userForm.validate((valid)=>{
         if(valid){
           this.$api.login(this.user).then((res)=>{
-            console.log(res);
+            this.$store.commit('saveUserInfo',res);
+            this.$router.push('/welcome');
           })
         }else{
           return false;
