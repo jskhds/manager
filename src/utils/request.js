@@ -6,8 +6,8 @@ import config from './../config'
 import { ElMessage } from 'element-plus'
 import router from './../router'
 
-const TOKEN_INVALID = 'Token认证失败，请重新登录'
-const NETWORK_ERROR = '网络请求异常，请稍后重试'
+const TOKEN_INVALID = 'Token认证失败,请重新登录'
+const NETWORK_ERROR = '网络请求异常,请稍后重试'
 
 // 创建axios实例对象，添加全局配置
 const service = axios.create({
@@ -28,7 +28,7 @@ service.interceptors.response.use((res)=>{
     const { code ,data, msg} = res.data;
     if(code === 200){
         return data;
-    }else if(code === 40001){
+    }else if(code === 50001){
         ElMessage.error(TOKEN_INVALID)
         setTimeout(()=>{
             router.push('/login')

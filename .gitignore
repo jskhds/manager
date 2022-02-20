@@ -3,3 +3,5 @@ node_modules
 dist
 dist-ssr
 *.local
+
+log/*           //忽略log下的所有文件
