@@ -8,15 +8,13 @@
 
   export default {
     name:'app',
-    mounted(){
-      this.$storage.setItem('name',"dmoon");
-      this.$storage.clearAll();
-    }
   }
  
 </script>
 
 
-<style>
- 
+<style lang="scss">
+/* @ 引入 style 文件 */
+@import './assets/style/reset.css';
+@import './assets/style/index.scss';
 </style>

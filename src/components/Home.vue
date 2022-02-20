@@ -1,14 +1,58 @@
-<script>
- 
-    export default {
-        name: 'Home'
-    }
-</script>
-
 <template>
-    <h1>home</h1>
-    <router-view></router-view>
+  <div class="basic-layout">
+    <div class="nav-side"></div>
+    <div class="content-right">
+      <div class="nav-top">
+        <div class="bread">面包屑</div>
+        <div class="user-">用户</div>
+      </div>
+      <div class="wrapper">
+        <div class="main-page">
+          <router-view></router-view>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
-<style>
+<script>
+export default{
+  name:'Home',
+}
+</script>
+
+<style lang="scss">
+.basic-layout{
+  position:relative;
+  .nav-side{
+    position: fixed;
+    width:200px;
+    height:100vh;
+    background-color: #001529;
+    color:#fff;
+    overflow-y: auto;
+    transition: width .5s;
+  }
+  .content-right{
+    //   因为 nav-side 已经脱离文档流了，所以这里要用 margin-left 固定一下位置（常见处理方法）
+    margin-left:200px;
+    .nav-top{
+      height: 50px;
+      line-height: 50px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+      padding: 0 20px;
+    }
+    .wrapper{
+      background: #eef0f3;
+      padding:20px;
+      height: calc(100vh - 50px);
+      .main-page{
+        background:#fff;
+        height:100%;
+      }
+    }
+  }
+}
 </style>

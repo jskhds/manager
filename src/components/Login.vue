@@ -1,5 +1,5 @@
 <template>
-    <h1>login</h1>
+    <h1>登录</h1>
     <el-button @click="goHome">回首页</el-button>
 </template>
 
