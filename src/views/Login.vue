@@ -2,7 +2,7 @@
   <div class="login-wrapper">
     <div class="modal">
       <el-form ref="userForm" :model="user" status-icon :rules="rules">
-        <div class="title">请登录</div>
+        <div class="title">火星</div>
         <el-form-item prop="userName">
           <el-input type="text" prefix-icon="el-icon-user" v-model="user.userName"/>
         </el-form-item>
@@ -75,7 +75,7 @@ export default {
     border-radius: 4px;
     box-shadow: 0px 0px 10px 3px #c7c9cb4d;
     .title{
-      font-size: 20px;
+      font-size: 50px;
       line-height: 1.5;
       text-align: center;
       margin-bottom: 30px;

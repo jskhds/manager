@@ -1,22 +1,22 @@
 {
-  "name": "manager",
-  "private": true,
+  "name": "manager-fe",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --mode dev",
     "build": "vite build",
-    "preview": "vite preview"
+    "serve": "vite preview"
   },
   "dependencies": {
-    "axios": "^0.26.0",
-    "element-plus": "^2.0.2",
-    "vue": "^3.2.25",
-    "vue-router": "^4.0.12",
-    "vuex": "^4.0.2"
+    "axios": "^0.21.1",
+    "element-plus": "^1.0.2-beta.32",
+    "vite": "^2.0.1",
+    "vue": "^3.0.5",
+    "vue-router": "^4.0.4",
+    "vuex": "^4.0.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.2.0",
-    "sass": "^1.49.8",
-    "vite": "^2.8.0"
+    "@vitejs/plugin-vue": "^1.1.4",
+    "@vue/compiler-sfc": "^3.0.5",
+    "sass": "^1.32.8"
   }
 }
