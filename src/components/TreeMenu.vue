@@ -1,6 +1,7 @@
 <template>
 <div>
   <!-- 递归调用 -->
+  <!-- v-for 的 key 调用在 Vue3 中改了一些，可以自动添加了 -->
     <template v-for="menu in userMenu" :key="menu._id">
 
       <!-- 先遍历父菜单，父菜单里面还有菜单的话就递归使用 treeMenu 组件 -->

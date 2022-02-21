@@ -23,7 +23,10 @@
       <div class="nav-top">
         <div class="nav-left">
           <div class="menu-fold" @click="toggle"> <i class="el-icon-s-fold"></i></div>           
-            <div class="bread">面包屑</div>
+            <div class="bread">
+              <!-- 面包屑 -->
+              <BreadCrumb/>
+            </div>
         </div>
         <div class="user-info">
           <!-- 看从接口返回的 noticeCount 的值，大于 0 为 true -->
@@ -55,9 +58,10 @@
 
 <script>
 import TreeMenu from "./TreeMenu.vue";
+import BreadCrumb from "./BreadCrumb.vue";
 export default{
   name:'Home',
-  components:{TreeMenu},
+  components:{TreeMenu,BreadCrumb},
   data(){
     return {
       isCollapse:false,
