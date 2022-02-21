@@ -5,7 +5,7 @@
     <template v-for="menu in userMenu" :key="menu._id">
 
       <!-- 先遍历父菜单，父菜单里面还有菜单的话就递归使用 treeMenu 组件 -->
-        <el-submenu v-if="menu.children && menu.children.length>0 && menu.children[0].menuType == 1"  :index="menu.path">
+        <el-submenu v-if="menu.children && menu.children.length>0 && menu.children[0].menuType == 1"  :index="menu.path" >
           <template #title>
             <i :class="menu.icon"></i>
             <span>{{menu.menuName}}</span>

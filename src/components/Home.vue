@@ -15,7 +15,7 @@
         router
         :collapse="isCollapse"
         class="nav-menu">
-       <tree-menu :userMenu="userMenu"/>
+       <TreeMenu :userMenu="userMenu"/>
     </el-menu>
     </div>
     <!-- 如果侧边栏收起和展开，宽度随之改变 -->
