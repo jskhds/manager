@@ -25,18 +25,8 @@ const routes = [
         meta: {
           title: "用户管理",
         },
-        component: () => import("./../views/Welcome.vue"),
-        children: [
-          {
-            //   如果要共用父组件的路径，记得path前面不要加 / 不然就变成绝对路径了
-            name: "info",
-            path: "info",
-            meta: {
-              title: "信息管理",
-            },
-            component: () => import("./../views/Welcome.vue"),
-          },
-        ],
+        component: () => import("./../views/User.vue"),
+        
       },
     ],
   },

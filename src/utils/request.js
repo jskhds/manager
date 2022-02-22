@@ -36,7 +36,7 @@ service.interceptors.response.use((res)=>{
         ElMessage.error(TOKEN_INVALID)
         setTimeout(()=>{
             router.push('/login')
-        },15000)
+        },1500)
         return Promise.reject(TOKEN_INVALID)
     }else{
         ElMessage.error(msg || NETWORK_ERROR)
@@ -52,13 +52,15 @@ function request(options){
     if(options.method.toLowerCase() === 'get'){
         options.params = options.data;
     }
+    // 用中间字段 isMock 来处理全局 config.mock和局部options.mock，不让它们两个被污染
+    let isMock = config.mock;
     if(typeof options.mock != 'undefined'){
-        config.mock = options.mock;
+        isMock = options.mock;
     }
     if(config.env === 'prod'){
         service.defaults.baseURL = config.baseApi
     }else{
-        service.defaults.baseURL = config.mock ? config.mockApi:config.baseApi
+        service.defaults.baseURL = isMock ? config.mockApi:config.baseApi
     }
 
     return service(options)

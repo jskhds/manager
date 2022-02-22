@@ -48,9 +48,9 @@
         </div>
       </div>
       <div class="wrapper">
-        <div class="main-page">
+
           <router-view></router-view>
-        </div>
+
       </div>
     </div>
   </div>
