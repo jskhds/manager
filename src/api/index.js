@@ -18,12 +18,12 @@
              mock: true
          })
      },
-     getMenuList() {
+     getMenuList(params) {
          return request({
              url: '/menu/list',
              method: 'get',
-             data: {},
-             mock: true
+             data: params,
+             mock: false
          })
      },
      getUserList(params) {
@@ -65,5 +65,13 @@
              data: params,
              mock: false
          })
-     }
+     },
+     menuSubmit(params) {
+        return request({
+            url: '/menu/operate',
+            method: 'post',
+            data: params,
+            mock: false
+        })
+    },
  }

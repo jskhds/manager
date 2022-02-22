@@ -258,12 +258,12 @@ export default {
 
     // 获取用户列表
     const getUserList = async () => {
-      console.log("getUserList")
+      // console.log("getUserList")
       let params = { ...user, ...pager };
-      console.log(params)
+      // console.log(params)
       try {
         const { list, page } = await proxy.$api.getUserList(params);
-        console.log(list)
+        // console.log(list)
         userList.value = list;
         pager.total = page.total;
       } catch (error) {
@@ -372,7 +372,8 @@ export default {
     const handleEdit = (row) => {
       action.value = "edit";
       showModal.value = true;
-      proxy.$nextTick(() => {
+      // Object.assign(userForm, row);
+      proxy.$nextTick(() => {   // 注意要用 nextTick 包起来
         Object.assign(userForm, row);
       });
     };
