@@ -49,6 +49,8 @@
           </template>
         </el-table-column>
       </el-table>
+
+      <!-- 分页控件 -->
       <el-pagination
         class="pagination"
         background
@@ -58,6 +60,7 @@
         @current-change="handleCurrentChange"
       />
     </div>
+    <!-- 以前用 v-if 和 v-show 来控制，现在用的是 v-model -->
     <el-dialog title="用户新增" v-model="showModal">
       <el-form
         ref="dialogForm"
@@ -78,7 +81,7 @@
             :disabled="action == 'edit'"
             placeholder="请输入用户邮箱"
           >
-            <template #append>@imooc.com</template>
+            <template #append>@gmail.com</template>
           </el-input>
         </el-form-item>
         <el-form-item label="手机号" prop="mobile">
@@ -136,7 +139,8 @@ export default {
   name: "user",
   setup() {
     //   获取Composition API 上下文对象
-    const { ctx } = getCurrentInstance();
+    const { proxy } = getCurrentInstance() 
+    console.log('proxy',proxy.$request)
     // 初始化用户表单对象
     const user = reactive({
       state: 1,
@@ -206,6 +210,7 @@ export default {
       {
         label: "用户角色",
         prop: "role",
+        // 把数字转换为对应的字符串
         formatter(row, column, value) {
           return {
             0: "管理员",
@@ -247,50 +252,72 @@ export default {
       getDeptList();
       getRoleList();
     });
+
+
+
+
     // 获取用户列表
     const getUserList = async () => {
+      console.log("getUserList")
       let params = { ...user, ...pager };
+      console.log(params)
       try {
-        const { list, page } = await ctx.$api.getUserList(params);
+        const { list, page } = await proxy.$api.getUserList(params);
+        console.log(list)
         userList.value = list;
         pager.total = page.total;
-      } catch (error) {}
+      } catch (error) {
+        console.log(error)
+      }
     };
+
+
+
+
     //  查询事件，获取用户列表
     const handleQuery = () => {
       getUserList();
     };
+
+
     // 重置查询表单
     const handleReset = (form) => {
-      ctx.$refs[form].resetFields();
+      proxy.$refs[form].resetFields();  // 首先要拿到这个表格的 dom 所以用 ref，但注意要绑定 prop
     };
+
+
     // 分页事件处理
     const handleCurrentChange = (current) => {
-      pager.pageNum = current;
+      pager.pageNum = current;  // 首先要知道当前是第几页
       getUserList();
     };
+
+
     // 用户单个删除
     const handleDel = async (row) => {
-      await ctx.$api.userDel({
+      await proxy.$api.userDel({
         userIds: [row.userId], //可单个删除，也可批量删除
       });
-      ctx.$message.success("删除成功");
+      proxy.$message.success("删除成功");
       getUserList();
     };
+
+
+
     // 批量删除
     const handlePatchDel = async () => {
       if (checkedUserIds.value.length == 0) {
-        ctx.$message.error("请选择要删除的用户");
+        proxy.$message.error("请选择要删除的用户");
         return;
       }
-      const res = await ctx.$api.userDel({
+      const res = await proxy.$api.userDel({
         userIds: checkedUserIds.value, //可单个删除，也可批量删除
       });
       if (res.nModified > 0) {
-        ctx.$message.success("删除成功");
+        proxy.$message.success("删除成功");
         getUserList();
       } else {
-        ctx.$message.success("修改失败");
+        proxy.$message.success("修改失败");
       }
     };
 
@@ -302,6 +329,7 @@ export default {
       });
       checkedUserIds.value = arr;
     };
+
     // 用户新增
     const handleCreate = () => {
       action.value = "add";
@@ -309,13 +337,13 @@ export default {
     };
 
     const getDeptList = async () => {
-      let list = await ctx.$api.getDeptList();
+      let list = await proxy.$api.getDeptList();
       deptList.value = list;
     };
 
     // 角色列表查询
     const getRoleList = async () => {
-      let list = await ctx.$api.getRoleList();
+      let list = await proxy.$api.getRoleList();
       roleList.value = list;
     };
     
@@ -324,18 +352,19 @@ export default {
       showModal.value = false;
       handleReset("dialogForm");
     };
+
     // 用户提交
     const handleSubmit = () => {
-      ctx.$refs.dialogForm.validate(async (valid) => {
+      proxy.$refs.dialogForm.validate(async (valid) => {
         if (valid) {
           let params = toRaw(userForm);
-          params.userEmail += "@imooc.com";
           params.action = action.value;
-          let res = await ctx.$api.userSubmit(params);
+          let res = await proxy.$api.userSubmit(params);
           showModal.value = false;
-          ctx.$message.success("用户创建成功");
+          proxy.$message.success("用户创建成功");
           handleReset("dialogForm");
           getUserList();
+        
         }
       });
     };
@@ -343,7 +372,7 @@ export default {
     const handleEdit = (row) => {
       action.value = "edit";
       showModal.value = true;
-      ctx.$nextTick(() => {
+      proxy.$nextTick(() => {
         Object.assign(userForm, row);
       });
     };

@@ -30,14 +30,16 @@
          return request({
              url: '/users/list',
              method: 'get',
-             data: params
+             data: params,
+             mock:false
          })
      },
      userDel(params) {
          return request({
              url: '/users/delete',
              method: 'post',
-             data: params
+             data: params,
+             mock:false
          })
      },
      getRoleList() {
@@ -45,7 +47,7 @@
              url: '/roles/allList',
              method: 'get',
              data: {},
-             mock: false
+             mock: true
          })
      },
      getDeptList() {
@@ -53,7 +55,7 @@
              url: '/dept/list',
              method: 'get',
              data: {},
-             mock: false
+             mock: true
          })
      },
      userSubmit(params) {
