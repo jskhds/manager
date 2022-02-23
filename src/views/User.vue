@@ -250,7 +250,7 @@ export default {
     onMounted(() => {
       getUserList();
       getDeptList();
-      getRoleList();
+      getRoleAllList();
     });
 
 
@@ -342,8 +342,8 @@ export default {
     };
 
     // 角色列表查询
-    const getRoleList = async () => {
-      let list = await proxy.$api.getRoleList();
+    const getRoleAllList = async () => {
+      let list = await proxy.$api.getRoleAllList();
       roleList.value = list;
     };
     
@@ -397,7 +397,7 @@ export default {
       handlePatchDel,
       handleSelectionChange,
       handleCreate,
-      getRoleList,
+      getRoleAllList,
       getDeptList,
       handleClose,
       handleSubmit,

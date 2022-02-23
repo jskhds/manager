@@ -42,14 +42,22 @@
              mock:false
          })
      },
-     getRoleList() {
-         return request({
-             url: '/roles/allList',
-             method: 'get',
-             data: {},
-             mock: true
-         })
-     },
+     getRoleAllList() {
+        return request({
+            url: '/roles/allList',
+            method: 'get',
+            data: {},
+            mock: false
+        })
+    },
+    getRoleList(params) {
+        return request({
+            url: '/roles/list',
+            method:'get',
+            data: params,
+            mock: false
+        })
+    },
      getDeptList() {
          return request({
              url: '/dept/list',
@@ -74,4 +82,23 @@
             mock: false
         })
     },
+    
+    // 角色操作
+    roleOperate(params){
+        return request({
+            url: '/roles/operate',
+            method: 'post',
+            data: params,
+            mock: false
+        })
+    },
+    // 权限更新设置
+    updatePermission(params){
+        return request({
+            url: '/roles/update/permission',
+            method: 'post',
+            data: params,
+            mock: false
+        })
+    }
  }
