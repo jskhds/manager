@@ -134,6 +134,7 @@ export default {
           width: 200,
           formatter: (row, column, value) => {
             let names = [];
+            // 主要理解权限列表里面两个 keys 的含义，一个全选，一个半选
             let list = value.halfCheckedKeys || [];
             list.map((key) => {
               let name = this.actionMap[key];
@@ -296,7 +297,10 @@ export default {
       this.$message.success("设置成功");
       this.getRoleList();
     },
+    // 权限映射表：递归生成。这个数据从菜单列表拿到，但是我们不需要展示菜单列表的每一级权限，
+    // 我们只展示有按钮类型的上面一级菜单。
     getActionMap(list) {
+      console.log("list",list)
       let actionMap = {};
       const deep = (arr) => {
         while (arr.length) {
@@ -309,6 +313,7 @@ export default {
           }
         }
       };
+      // 为了不改变 list 的数据（因为是引用类型），所以要对 list 进行格式转换
       deep(JSON.parse(JSON.stringify(list)));
       this.actionMap = actionMap;
     },

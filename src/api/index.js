@@ -34,6 +34,14 @@
              mock:false
          })
      },
+    //  获取所有用户
+     getAllUserList(){
+        return request({
+            url: '/users/all/list',
+            method: 'get',
+            mock:false
+        })
+     },
      userDel(params) {
          return request({
              url: '/users/delete',
@@ -58,14 +66,23 @@
             mock: false
         })
     },
-     getDeptList() {
+     getDeptList(params) {
          return request({
              url: '/dept/list',
              method: 'get',
-             data: {},
-             mock: true
+             data: params,
+             mock: false
          })
      },
+     deptOperate(params) {
+        return request({
+            url: '/dept/operate',
+            method: 'post',
+            data: params,
+            mock: false
+        })
+    },
+
      userSubmit(params) {
          return request({
              url: '/users/operate',
