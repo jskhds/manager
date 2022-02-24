@@ -140,7 +140,7 @@ export default {
   setup() {
     //   获取Composition API 上下文对象
     const { proxy } = getCurrentInstance() 
-    console.log('proxy',proxy.$request)
+    // console.log('proxy',proxy.$request)
     // 初始化用户表单对象
     const user = reactive({
       state: 1,

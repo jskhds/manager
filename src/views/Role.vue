@@ -300,7 +300,7 @@ export default {
     // 权限映射表：递归生成。这个数据从菜单列表拿到，但是我们不需要展示菜单列表的每一级权限，
     // 我们只展示有按钮类型的上面一级菜单。
     getActionMap(list) {
-      console.log("list",list)
+      // console.log("list",list)
       let actionMap = {};
       const deep = (arr) => {
         while (arr.length) {

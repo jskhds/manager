@@ -27,7 +27,7 @@
          })
      },
      getPermissionList() {
-        console.log("getPerssionList")
+        // console.log("getPerssionList")
         return request({
             url: '/users/getPermissionList',
             method: 'get',
@@ -125,5 +125,23 @@
             data: params,
             mock: false
         })
-    }
+    },
+    // 获取休假列表
+    getApplyList(params){
+        return request({
+            url: '/leave/list',
+            method: 'get',
+            data: params,
+            mock: false
+        })
+    },
+    // 创建申请单
+    leaveOperate(params){
+        return request({
+            url: '/leave/operate',
+            method: 'post',
+            data: params,
+            mock: true
+        })
+    },
  }

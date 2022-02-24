@@ -100,7 +100,7 @@ async function loadAsyncRoutes() {
           const { menuList } = await API.getPermissionList()
           let routes = utils.generateRoute(menuList)
           const modules = import.meta.glob('../views/*.vue')
-          console.log('views',modules)
+          // console.log('views',modules)
           routes.map(route => {
               let url = `../views/${route.name}.vue`
               route.component = modules[url];
@@ -128,7 +128,9 @@ loadAsyncRoutes();
 // 去哪，从哪里来，到了之后要做什么
 router.beforeEach(async (to, from, next) => {
   if (to.name) {
+    // 返回的数据里面有 name 就相当于有 path
       if (router.hasRoute(to.name)) {
+        // 页面写入元数据title
           document.title = to.meta.title;
           next()
       } else {

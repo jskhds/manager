@@ -98,8 +98,8 @@ export default{
     async getMenuList(){
       try{
           const {menuList, actionList} = await this.$api.getPermissionList()
-          console.log("menuList",menuList);
-          console.log("actionList",actionList);
+          // console.log("menuList",menuList);
+          // console.log("actionList",actionList);
 
           this.userMenu = menuList;
           // 提交数据给store保存到 localStorage 中
