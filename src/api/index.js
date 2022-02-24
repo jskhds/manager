@@ -15,7 +15,7 @@
              url: '/leave/count',
              method: 'get',
              data: {},
-             mock: true
+             mock: false
          })
      },
      getMenuList(params) {
@@ -136,12 +136,18 @@
         })
     },
     // 创建申请单
-    leaveOperate(params){
+    leaveOperate(params) {
         return request({
             url: '/leave/operate',
             method: 'post',
-            data: params,
-            mock: true
+            data: params
         })
     },
+    leaveApprove(params) {
+        return request({
+            url: '/leave/approve',
+            method: 'post',
+            data: params
+        })
+    }
  }

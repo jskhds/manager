@@ -71,10 +71,16 @@ export default{
       activeMenu:location.hash.slice(1)
     }
   },
+  computed:{
+    noticeCount(){
+      return this.$store.state.noticeCount;
+    }
+  },
   mounted(){
     this.getNoticeCount();
     this.getMenuList();
   },
+
   methods:{
     toggle(){
       this.isCollapse = !this.isCollapse;
@@ -89,7 +95,7 @@ export default{
     async getNoticeCount(){
       try{
         const count =  await this.$api.noticeCount();
-        this.noticeCount = count;
+        this.$store.commit("saveNoticeCount", count);
       }catch(err){
         console.error(err)
       }
