@@ -10,7 +10,25 @@ import store from './store'
 
 console.log("环境变量=>",import.meta.env)
 
+
+
 const app = createApp(App);
+
+app.directive('has', {
+    beforeMount: function (el, binding) {
+        let actionList = storage.getItem('actionList');
+        let value = binding.value;
+        let hasPermission = actionList.includes(value)
+        if (!hasPermission) {
+            el.style = 'display:none';
+            // beforeMount周期还没有渲染完，所以移除 dom 节点要放到宏任务里面
+            setTimeout(() => {
+                el.parentNode.removeChild(el);
+            }, 0)
+        }
+    }
+})
+
 app.config.globalProperties.$request = request;
 app.config.globalProperties.$api = api;
 app.config.globalProperties.$storage = storage;

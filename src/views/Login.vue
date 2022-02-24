@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import storage from "../utils/storage"
+import utils from "../utils/utils";
 export default {
   name:'login',
   data(){
@@ -44,8 +46,9 @@ export default {
     login(){
       this.$refs.userForm.validate((valid)=>{
         if(valid){
-          this.$api.login(this.user).then((res)=>{
+          this.$api.login(this.user).then(async (res)=>{
             this.$store.commit('saveUserInfo',res);
+            await this.loadAsyncRoutes()
             this.$router.push('/welcome');
           })
         }else{
@@ -55,7 +58,26 @@ export default {
     },
     goHome(){
       this.$router.push('/welcome')
+    },
+    async loadAsyncRoutes() {
+    let userInfo = storage.getItem('userInfo') || {}
+    if (userInfo.token) {
+        try {
+            const { menuList } = await this.$api.getPermissionList()
+            let routes = utils.generateRoute(menuList)
+            const modules = import.meta.glob('../views/*.vue')
+            // console.log('views',modules)
+            //通过遍历 动态添加路由
+            routes.map(route => {
+                let url = `../views/${route.name}.vue`
+                route.component = modules[url];
+                this.$router.addRoute("home", route);
+            })
+        } catch (error) {
+
+        }
     }
+}
   }
 }
 </script>

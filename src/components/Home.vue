@@ -97,8 +97,15 @@ export default{
     },
     async getMenuList(){
       try{
-         const list = await this.$api.getMenuList()
-          this.userMenu = list;
+          const {menuList, actionList} = await this.$api.getPermissionList()
+          console.log("menuList",menuList);
+          console.log("actionList",actionList);
+
+          this.userMenu = menuList;
+          // 提交数据给store保存到 localStorage 中
+          this.$store.commit("saveUserMenu", menuList);
+          this.$store.commit("saveUserAction", actionList);
+
       }catch(err){
         console.error(err)
       }

@@ -26,6 +26,14 @@
              mock: false
          })
      },
+     getPermissionList() {
+        console.log("getPerssionList")
+        return request({
+            url: '/users/getPermissionList',
+            method: 'get',
+            data: {}
+        })
+    },
      getUserList(params) {
          return request({
              url: '/users/list',

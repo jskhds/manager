@@ -25,11 +25,13 @@ export default {
         }
         return fmt;
     },
+    // 递归生成路由
     generateRoute(menuList) {
         let routes = []
         const deepList = (list) => {
             while (list.length) {
                 let item = list.pop()
+                // 有 action 说明是按钮，到按钮就够了
                 if (item.action) {
                     routes.push({
                         name: item.component,
@@ -40,6 +42,7 @@ export default {
                         component: item.component
                     })
                 }
+                // 第一层（系统管理，审批管理）继续递归
                 if (item.children && !item.action) {
                     deepList(item.children)
                 }
